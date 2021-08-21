@@ -5,8 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity';
-import { COFFEE_BRANDS } from './coffees.constants';
-import { Connection } from 'typeorm';
+import { ConfigModule } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
+// import { COFFEE_BRANDS } from './coffees.constants';
+// import { Connection } from 'typeorm';
 
 // class MockCoffeesService {}
 // class ConfigService {}
@@ -22,7 +24,10 @@ import { Connection } from 'typeorm';
 // }
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
+  imports: [
+    TypeOrmModule.forFeature([Coffee, Flavor, Event]),
+    ConfigModule.forFeature(coffeesConfig),
+  ],
   controllers: [CoffeesController],
   // providers: [{ provide: CoffeesService, useValue: new MockCoffeesService() }],
   providers: [
@@ -52,11 +57,11 @@ import { Connection } from 'typeorm';
     //   },
     //   inject: [Connection],
     // },
-    {
-      provide: COFFEE_BRANDS,
-      useFactory: () => ['buddy brew', 'nescafe'],
-      scope: Scope.TRANSIENT,
-    },
+    // {
+    //   provide: COFFEE_BRANDS,
+    //   useFactory: () => ['buddy brew', 'nescafe'],
+    //   scope: Scope.TRANSIENT,
+    // },
   ],
   exports: [CoffeesService],
 })
