@@ -9,7 +9,7 @@ import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { Event } from '../events/entities/event.entity';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
-// import { COFFEE_BRANDS } from './coffees.constants';
+import { COFFEE_BRANDS } from './coffees.constants';
 
 @Injectable()
 // @Injectable({ scope: Scope.TRANSIENT })
